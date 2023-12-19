@@ -3,6 +3,7 @@ package com.tuanzhang.product.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -41,6 +42,12 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
             return menu;
         }).sorted((menu1, menu2) -> { return (menu1.getSort() == null ? 0 :menu1.getSort()) - (menu2.getSort() == null ? 0: menu2.getSort()); }).collect(Collectors.toList());
         return categoryEntities;
+    }
+
+    @Override
+    public void removeCategoryByIds(List<Long> ids) {
+        //TODO //检查当前删除菜单，是否被别的地方引用
+        baseMapper.deleteBatchIds(ids);
     }
 
     private List<CategoryEntity> getChildrens(CategoryEntity root, List<CategoryEntity> all) {

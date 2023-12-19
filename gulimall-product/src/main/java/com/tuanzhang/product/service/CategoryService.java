@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.tuanzhang.common.utils.PageUtils;
 import com.tuanzhang.product.entity.CategoryEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,5 +20,7 @@ public interface CategoryService extends IService<CategoryEntity> {
     PageUtils queryPage(Map<String, Object> params);
 
     List<CategoryEntity> listWithTree();
+
+    void removeCategoryByIds(List<Long> longs);
 }
 
